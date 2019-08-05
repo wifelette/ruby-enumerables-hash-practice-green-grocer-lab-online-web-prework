@@ -23,12 +23,12 @@ def apply_coupons(cart, coupons)
 
         if cart[value][:count] < item_coupon[:num]
           pp "not enough cheese"
-        
+
         elsif cart[value][:count] % item_coupon[:num] != 0
           cart["#{value} W/COUPON"] = {:price => (item_coupon[:cost] / item_coupon[:num]), :clearance => cart[value][:clearance], :count => item_coupon[:num]}
 
           cart[value][:count] = (cart[value][:count] - item_coupon[:num])
-        
+
         else
           array_of_number_of_times_to_run_coupon = cart[value][:count].divmod(item_coupon[:num])
 
@@ -39,7 +39,7 @@ def apply_coupons(cart, coupons)
         end
 
 			end
-		end	
+		end
 	end
   pp cart
   cart
