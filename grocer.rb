@@ -15,8 +15,6 @@ def consolidate_cart(cart)
 end
 
 def apply_coupons(cart, coupons)
-  pp cart
-
   coupons.each do |item_coupon|
 
     item_coupon.each_pair do |key, value|
@@ -27,10 +25,8 @@ def apply_coupons(cart, coupons)
 
         cart[value][:count] = (cart[value][:count] - item_coupon[:num])
 
-      else
-        # p "This is no"
 			end
-		end
+		end	
 	end
   cart
 end
