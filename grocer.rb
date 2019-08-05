@@ -31,6 +31,7 @@ def apply_coupons(cart, coupons)
           cart["#{value} W/COUPON"] = {:price => (item_coupon[:cost] / item_coupon[:num]), :clearance => true, :count => array_of_number_of_times_to_run_coupon[0] * item_coupon[:num]}
 
           cart[value][:count] = array_of_number_of_times_to_run_coupon[1]
+          cart[value][:clearance] = false
 
         end
 
