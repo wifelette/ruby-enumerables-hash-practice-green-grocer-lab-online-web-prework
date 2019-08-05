@@ -30,7 +30,7 @@ def apply_coupons(cart, coupons)
       else
         # p "This is no"
 			end
-		end	
+		end
 	end
   cart
 end
