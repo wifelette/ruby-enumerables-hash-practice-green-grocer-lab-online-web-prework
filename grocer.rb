@@ -59,5 +59,22 @@ def apply_clearance(new_cart)
 end
 
 def checkout(cart, coupons)
-  # code here
+  new_cart = consolidate_cart(cart)
+  cart_after_coupons = apply_coupons(new_cart, coupons)
+  cart_after_coupons_and_clearance = apply_clearance(cart_after_coupons)
+
+  running_total = 0
+  grand_total = 0
+
+  cart_after_coupons_and_clearance.each_pair do |item, info_about_it|
+    item_subtotal = info_about_it[:price] * info_about_it[:count]
+    running_total += item_subtotal
+  end
+
+  if running_total > 100
+    grand_total = running_total * 0.9
+  else
+    grand_total = running_total
+  end
+  grand_total.floor(2)
 end
