@@ -21,12 +21,21 @@ def apply_coupons(cart, coupons)
 
 			if cart.include? value
 
-				cart["#{value} W/COUPON"] = {:price => (item_coupon[:cost] / item_coupon[:num]), :clearance => true, :count => item_coupon[:num]}
+        if cart[value][:count] % item_coupon[:num] != 0
+          cart["#{value} W/COUPON"] = {:price => (item_coupon[:cost] / item_coupon[:num]), :clearance => true, :count => item_coupon[:num]}
 
-        cart[value][:count] = (cart[value][:count] - item_coupon[:num])
+          cart[value][:count] = (cart[value][:count] - item_coupon[:num])
+        else
+          array_of_number_of_times_to_run_coupon = cart[value][:count].divmod(item_coupon[:num])
+
+          cart["#{value} W/COUPON"] = {:price => (item_coupon[:cost] / item_coupon[:num]), :clearance => true, :count => item_coupon[:num]}
+
+          cart[value][:count] = array_of_number_of_times_to_run_coupon[1]
+
+        end
 
 			end
-		end
+		end	
 	end
   cart
 end
