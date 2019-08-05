@@ -46,8 +46,16 @@ def apply_coupons(cart, coupons)
   cart
 end
 
-def apply_clearance(cart)
-  # code here
+def apply_clearance(new_cart)
+  new_cart.each_pair do |key, value|
+    if value[:clearance] === true
+      new_price = value[:price] * 0.8
+      value[:price] = new_price.floor(2)
+    else
+      pp "not on clearance, do nothing"
+    end
+  end
+  new_cart
 end
 
 def checkout(cart, coupons)
